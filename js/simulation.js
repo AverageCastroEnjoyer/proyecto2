@@ -1,6 +1,14 @@
 import { MMU } from "./mmu.js";
 import { PAGE_SIZE, RAM_KB } from "./constants.js";
 
+/*
+Coordina y compara la ejecucion de ambos algoritmos (OPT y Selec.)
+y los muestra en pantalla.
+@step() avanza a la siguiente instruccion en ambos algoritmos.
+@play() ejecuta steps cada 600ms
+@pause() detiene el intervalo de ejecucion
+@snapshot() toma una foto del estado actual de la simulacion.
+*/
 export class Simulator {
   constructor(operations, selectedAlgorithm, render) {
     this.i = 0; this.ops = operations; this.render = render; this.timer = null;
@@ -15,12 +23,27 @@ export class Simulator {
     this.i++; this.render(this.snapshot());
   }
 
-  play(ms = 600) { this.pause(); this.timer = setInterval(() => this.step(), ms); }
-  pause() { if (this.timer) clearInterval(this.timer); this.timer = null; }
+  play(ms = 600) { 
+    this.pause(); 
+    this.timer = setInterval(() => this.step(), ms);
+  }
 
-  snapshot() { return { index: this.i, op: this.ops[this.i - 1], opt: metrics(this.opt), selected: metrics(this.sel) }; }
+  pause() { 
+    if (this.timer) clearInterval(this.timer);
+    this.timer = null;
+  }
+
+  snapshot() { 
+    return { 
+      index: this.i,  
+      op: this.ops[this.i - 1], 
+      opt: metrics(this.opt), 
+      selected: metrics(this.sel) 
+    };
+  }
 }
 
+/*Muestra y calcula los datos de la simulacion*/
 function metrics(mmu) {
   const ramPages = mmu.ram.filter(Boolean).length,
         vPages = mmu.vram.size;

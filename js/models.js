@@ -1,3 +1,5 @@
+/*Pues es una pagina con informacion de
+cosas de pagina, no muy complicado tampoco */
 export class Page {
   constructor({ id, pid, ptr, sizeBytes, index }) {
     Object.assign(this, { id, pid, ptr, sizeBytes, index });
@@ -10,6 +12,12 @@ export class Page {
   }
 }
 
+/*Como su nombre indica: registro de asignacion de
+los punteros
+@ptr: id del puntero
+@pid: id del duenho
+@sizedBytes: tamano de solicitud de memoria
+@pages: paginas asignadas al proceso */
 export class PointerRecord {
   constructor(ptr, pid, sizeBytes, pages) {
     Object.assign(this, { ptr, pid, sizeBytes, pages });

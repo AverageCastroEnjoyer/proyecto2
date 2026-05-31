@@ -1,3 +1,7 @@
+/*Ejecutador(?) de Algoritmos
+Selecciona una pagina para enviarla a VRAM, segun
+el algoritmo indicado. 
+*/
 export function pickVictim(mmu, opIndex) {
   const pages = mmu.ram;
   if (mmu.algorithm === "FIFO") return minIndex(pages, p => p.loadedAt);
@@ -9,6 +13,9 @@ export function pickVictim(mmu, opIndex) {
 
 const minIndex = (arr, score) => arr.reduce((best, p, i) => score(p) < score(arr[best]) ? i : best, 0);
 
+/*Funcion dedicada al cakculo del algoritmo
+SecondChance 
+*/
 function secondChance(mmu) {
   while (true) {
     const p = mmu.ram[mmu.clockHand];
@@ -22,6 +29,9 @@ function secondChance(mmu) {
   }
 }
 
+/*Funcion dedicada al cakculo del algoritmo
+optimo 
+*/
 function optimal(mmu, opIndex) {
   return minIndex(mmu.ram, page => {
     const next = mmu.operations.findIndex((op, i) => i > opIndex && op.type === "use" && op.ptr === page.ptr);

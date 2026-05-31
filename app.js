@@ -1,11 +1,24 @@
+/* Almacena clases CSS asignadas a procesos para visualización.
+@PROCESS_COLORS: configuración del mapeo de colores para los procesos
+*/
 const PROCESS_COLORS = [
   "p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8"
 ];
 
+/*Determinar de forma cíclica la clase de color  
+ a un proceso según su identificador único.
+ @param: 'pid' (un número entero que representa el ID del proceso).
+ @output: Una cadena de texto con el nombre de la clase CSS correspondiente.
+ * Variables relevantes: Utiliza una operación de residuo (%) matemática para asegurar 
+ * que, si el ID del proceso supera la cantidad de colores disponibles en el arreglo 
+ * 'PROCESS_COLORS', el índice calculado se mantenga siempre dentro de los límites válidos.
+ */
 function processClass(pid) {
   return PROCESS_COLORS[(pid - 1) % PROCESS_COLORS.length];
 }
 
+/*
+ */
 function renderRam(containerId, ramFrames) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
@@ -26,6 +39,8 @@ function renderRam(containerId, ramFrames) {
   }
 }
 
+/*
+ */
 function renderMmuTable(bodyId, pages) {
   const tbody = document.getElementById(bodyId);
   tbody.innerHTML = "";
@@ -49,6 +64,8 @@ function renderMmuTable(bodyId, pages) {
   }
 }
 
+/*
+ */
 function renderMetrics(containerId, metrics) {
   const container = document.getElementById(containerId);
   const thrashingDanger = metrics.thrashingPct > 50 ? "danger" : "";
@@ -103,6 +120,8 @@ function renderMetrics(containerId, metrics) {
   `;
 }
 
+/*
+ */
 function renderSimulation(optState, algState) {
   renderRam("ram-opt", optState.ram);
   renderRam("ram-alg", algState.ram);
