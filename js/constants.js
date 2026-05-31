@@ -1,3 +1,5 @@
+/*Pues las constantes para la gestión de  | 
+  memoria. No tiene mucho misterio tbh   */
 export const PAGE_SIZE = 4096;
 export const RAM_FRAMES = 100;
 export const RAM_KB = 400;

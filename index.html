@@ -21,12 +21,18 @@
             <strong>pso-2026</strong>
           </div>
           <div>
-            <span>Operacion</span>
-            <strong>247 / 500</strong>
+            <button id="pauseBtn">Pause</button>
+            <button id="resetBtn">Reset</button>
+            <button id="stopBtn">Stop</button>
           </div>
           <div>
             <span>Algoritmo</span>
-            <strong>LRU</strong>
+            <select id="algoritmoSelector" name="algoritmo">
+              <option value="FIFO">FIFO</option>
+              <option value="SC">SC</option>
+              <option value="LRU">LRU</option>
+              <option value="LFU">LFU</option>
+            </select>
           </div>
         </section>
       </header>
