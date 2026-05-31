@@ -18,7 +18,6 @@ export class MMU {
     if (op.type === "kill") return this.kill(op.pid);
   }
 
-
   /* - - - - - - - - - INICIALIZACION CARAC. PROCESO - - - - - - - - - - - */
   new(pid, sizeBytes, opIndex) {
     const ptr = this.nextPtr++, pageCount = Math.ceil(sizeBytes / PAGE_SIZE);
@@ -35,7 +34,6 @@ export class MMU {
     return { ptr, event: "new", pages };
   }
 
-
   use(ptr, opIndex) {
     const rec = this.pointers.get(ptr); if (!rec) return { event: "invalid-use", ptr };
     for (const id of rec.pages) {
@@ -46,7 +44,6 @@ export class MMU {
     }
     return { event: "use", ptr };
   }
-
 
   delete(ptr) {
     const rec = this.pointers.get(ptr); if (!rec) return { event: "invalid-delete", ptr };
@@ -62,8 +59,6 @@ export class MMU {
     return { event: "kill", pid };
   }
 
-
-
   placeInRam(page, opIndex) {
     let frame = this.ram.findIndex(x => x === null);
     if (frame === -1) {
@@ -75,11 +70,28 @@ export class MMU {
     this.ram[frame] = page;
   }
 
-
-  
   freePage(id) {
     const page = this.pages.get(id); if (!page) return;
     if (page.inRam) this.ram[page.frame] = null;
     this.vram.delete(id); this.pages.delete(id);
+  }
+
+  snapshot() {
+    return {
+      ram: this.ram,
+      pages: Array.from(this.pages.values()),
+      metrics: {
+        processes: this.runningPids.size,
+        simTime: this.clock,
+        ramKb: this.ram.filter(Boolean).length * 4,
+        ramPct: this.ram.filter(Boolean).length,
+        vramKb: this.vram.size * 4,
+        vramPct: Math.round((this.vram.size * 4 / 400) * 100),
+        pages: this.pages.size,
+        thrashing: this.thrashing,
+        thrashingPct: this.clock === 0 ? 0 : Math.round((this.thrashing / this.clock) * 100),
+        fragmentation: this.internalWaste
+      }
+    };
   }
 }

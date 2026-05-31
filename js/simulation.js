@@ -22,12 +22,19 @@ export class Simulator {
 }
 
 function metrics(mmu) {
-  const ramPages = mmu.ram.filter(Boolean).length, vPages = mmu.vram.size;
+  const ramPages = mmu.ram.filter(Boolean).length,
+        vPages = mmu.vram.size;
   return {
-    ram: mmu.ram, pointers: [...mmu.pointers.values()], processes: mmu.runningPids.size,
-    clock: mmu.clock, ramKB: ramPages * 4, ramPct: ramPages,
-    vramKB: vPages * 4, vramPctOfRam: ((vPages * 4) / RAM_KB) * 100,
-    thrashing: mmu.thrashing, thrashingPct: mmu.clock ? (mmu.thrashing / mmu.clock) * 100 : 0,
+    ram: mmu.ram,
+    pointers: [...mmu.pointers.values()],
+    processes: mmu.runningPids.size,
+    clock: mmu.clock,
+    ramKB: ramPages * 4,
+    ramPct: ramPages,
+    vramKB: vPages * 4,
+    vramPctOfRam: ((vPages * 4) / RAM_KB) * 100,
+    thrashing: mmu.thrashing,
+    thrashingPct: mmu.clock ? (mmu.thrashing / mmu.clock) * 100 : 0,
     internalWasteKB: mmu.internalWaste / 1024
   };
 }

@@ -1,11 +1,141 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Title</title>
-</head>
-<body>
-    <h1>This is a Heading</h1>
-    <p>This is a paragraph.</p>
-    <a href="https://www.google.com">This is a link</a>
-</body>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simulacion MMU</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <main class="simulation-shell" aria-label="Visualizacion de simulacion MMU">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Proyecto 2 - Sistemas Operativos</p>
+          <h1>Simulacion de paginacion MMU</h1>
+        </div>
+
+        <section class="run-summary" aria-label="Parametros de la simulacion">
+          <div>
+            <span>Semilla</span>
+            <strong>pso-2026</strong>
+          </div>
+          <div>
+            <span>Operacion</span>
+            <strong>247 / 500</strong>
+          </div>
+          <div>
+            <span>Algoritmo</span>
+            <strong>LRU</strong>
+          </div>
+        </section>
+      </header>
+
+      <section class="memory-strip" aria-label="Estado de RAM">
+        <article class="ram-row">
+          <span class="ram-title">RAM - OPT</span>
+          <div id="ram-opt" class="ram-bar" role="img" aria-label="100 paginas de RAM para algoritmo optimo"></div>
+            <!--
+            <span class="page free"></span><span class="page p1"></span><span class="page p1"></span><span class="page p1"></span><span class="page p2"></span>
+            <span class="page p2"></span><span class="page p2"></span><span class="page p3"></span><span class="page p3"></span><span class="page p3"></span>
+            <span class="page p3"></span><span class="page p4"></span><span class="page p4"></span><span class="page p4"></span><span class="page p5"></span>
+            <span class="page p5"></span><span class="page p5"></span><span class="page p2"></span><span class="page p2"></span><span class="page p6"></span>
+            <span class="page p6"></span><span class="page p6"></span><span class="page p6"></span><span class="page p4"></span><span class="page p4"></span>
+            <span class="page p3"></span><span class="page p3"></span><span class="page p3"></span><span class="page p7"></span><span class="page p7"></span>
+            <span class="page p7"></span><span class="page p5"></span><span class="page p5"></span><span class="page p5"></span><span class="page p5"></span>
+            <span class="page p8"></span><span class="page p8"></span><span class="page p8"></span><span class="page p8"></span><span class="page p8"></span>
+            <span class="page p1"></span><span class="page p1"></span><span class="page p1"></span><span class="page p2"></span><span class="page p2"></span>
+            <span class="page p2"></span><span class="page p6"></span><span class="page p6"></span><span class="page p6"></span><span class="page p6"></span>
+            <span class="page p4"></span><span class="page p4"></span><span class="page p4"></span><span class="page p7"></span><span class="page p7"></span>
+            <span class="page p7"></span><span class="page p3"></span><span class="page p3"></span><span class="page p3"></span><span class="page p5"></span>
+            <span class="page p5"></span><span class="page p5"></span><span class="page p2"></span><span class="page p2"></span><span class="page p1"></span>
+            <span class="page p1"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            -->
+          </div>
+        </article>
+
+        <article class="ram-row">
+          <span class="ram-title">RAM - ALG</span>
+          <div class="ram-bar" role="img" aria-label="100 paginas de RAM para algoritmo seleccionado"></div>
+            <!--
+            <span class="page p1"></span><span class="page p1"></span><span class="page p1"></span><span class="page p1"></span><span class="page p2"></span>
+            <span class="page p2"></span><span class="page p2"></span><span class="page p3"></span><span class="page p3"></span><span class="page p3"></span>
+            <span class="page p4"></span><span class="page p4"></span><span class="page p4"></span><span class="page p5"></span><span class="page p5"></span>
+            <span class="page p5"></span><span class="page p2"></span><span class="page p2"></span><span class="page p2"></span><span class="page p6"></span>
+            <span class="page p6"></span><span class="page p6"></span><span class="page p7"></span><span class="page p7"></span><span class="page p7"></span>
+            <span class="page p7"></span><span class="page p8"></span><span class="page p8"></span><span class="page p8"></span><span class="page p8"></span>
+            <span class="page p4"></span><span class="page p4"></span><span class="page p4"></span><span class="page p1"></span><span class="page p1"></span>
+            <span class="page p1"></span><span class="page p3"></span><span class="page p3"></span><span class="page p3"></span><span class="page p5"></span>
+            <span class="page p5"></span><span class="page p5"></span><span class="page p6"></span><span class="page p6"></span><span class="page p6"></span>
+            <span class="page p6"></span><span class="page p2"></span><span class="page p2"></span><span class="page p2"></span><span class="page p7"></span>
+            <span class="page p7"></span><span class="page p7"></span><span class="page p8"></span><span class="page p8"></span><span class="page p4"></span>
+            <span class="page p4"></span><span class="page p4"></span><span class="page p5"></span><span class="page p5"></span><span class="page p3"></span>
+            <span class="page p3"></span><span class="page p1"></span><span class="page p1"></span><span class="page p6"></span><span class="page p6"></span>
+            <span class="page p6"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            <span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span><span class="page free"></span>
+            -->  
+          </div>
+        </article>
+      </section>
+
+      <section class="comparison-grid" aria-label="Comparacion de algoritmos">
+        <article class="algorithm-panel">
+          <header class="panel-title">MMU - OPT</header>
+          <div class="mmu-table-wrap">
+            <table class="mmu-table">
+              <thead>
+                <tr>
+                  <th>PAGE ID</th>
+                  <th>PID</th>
+                  <th>LOADED</th>
+                  <th>L-ADDR</th>
+                  <th>M-D</th>
+                  <th>D-ADDR</th>
+                  <th>LOADED-T</th>
+                  <th>MARK</th>
+                </tr>
+              </thead>
+              <tbody id="mmu-opt-body"></tbody>
+            </table>
+          </div>
+
+          <div id="metrics-opt" class="metrics"></div>
+        </article>
+
+        <article class="algorithm-panel">
+          <header class="panel-title">MMU - ALG</header>
+          <div class="mmu-table-wrap">
+            <table class="mmu-table">
+              <thead>
+                <tr>
+                  <th>PAGE ID</th>
+                  <th>PID</th>
+                  <th>LOADED</th>
+                  <th>L-ADDR</th>
+                  <th>M-D</th>
+                  <th>D-ADDR</th>
+                  <th>LOADED-T</th>
+                  <th>MARK</th>
+                </tr>
+              </thead>
+              <tbody id="mmu-alg-body"></tbody>
+            </table>
+          </div>
+
+          <div id="metrics-alg" class="metrics"></div>
+        </article>
+      </section>
+    </main>
+  </body>
 </html>

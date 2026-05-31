@@ -12,8 +12,13 @@ const minIndex = (arr, score) => arr.reduce((best, p, i) => score(p) < score(arr
 function secondChance(mmu) {
   while (true) {
     const p = mmu.ram[mmu.clockHand];
-    if (p.ref === 0) { const out = mmu.clockHand; mmu.clockHand = (out + 1) % mmu.ram.length; return out; }
-    p.ref = 0; mmu.clockHand = (mmu.clockHand + 1) % mmu.ram.length;
+    if (p.ref === 0) {
+      const out = mmu.clockHand; 
+      mmu.clockHand = (out + 1) % mmu.ram.length;
+      return out;
+    }
+    p.ref = 0;
+     mmu.clockHand = (mmu.clockHand + 1) % mmu.ram.length;
   }
 }
 
