@@ -44,7 +44,7 @@ function secondChance(mmu) {
 | Evalúa una página y cuál será la próxima vez que se utilizará. 
 | No se usa? Se asigna 'Infinity' para ser seleccionada como víctima. 
 | Si se usa? Se asigna valor negativo del índice de la próx. op. para priorizar las que se usarán más tarde.
-| @metodo: findIndex() - busca la próx. op. que use la página actual (comparando el puntero de la página con el puntero de las operaciones). 
+| @metodo findIndex(): busca la próx. op. que use la página actual (comparando el puntero de la página con el puntero de las operaciones). 
 | @param {MMU} mmu: contiene el estado actual de la RAM y las operaciones.
 | @param {number} opIndex: el índice de la operación actual en la lista de operaciones.
 | @return {number}: el índice de la página en RAM que debe ser reemplazada según el algoritmo óptimo.
