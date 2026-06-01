@@ -1,13 +1,12 @@
 import { MMU } from "./mmu.js";
 import { PAGE_SIZE, RAM_KB } from "./constants.js";
 
-/*
-Coordina y compara la ejecucion de ambos algoritmos (OPT y Selec.)
-y los muestra en pantalla.
-@step() avanza a la siguiente instruccion en ambos algoritmos.
-@play() ejecuta steps cada 600ms
-@pause() detiene el intervalo de ejecucion
-@snapshot() toma una foto del estado actual de la simulacion.
+/* Coordina y compara la ejecucion de ambos algoritmos
+| (OPT y Selec.) y los muestra en pantalla.
+| @metodo: step() - avanza a la siguiente instruccion en ambos algoritmos.
+| @metodo: play() - ejecuta steps cada 600ms
+| @metodo: pause() - detiene el intervalo de ejecucion
+| @metodo: snapshot() - toma una foto del estado actual de la simulacion.
 */
 export class Simulator {
   constructor(operations, selectedAlgorithm, render) {
@@ -43,7 +42,21 @@ export class Simulator {
   }
 }
 
-/*Muestra y calcula los datos de la simulacion*/
+/*Muestra y calcula los datos de la simulacion
+| @returns: Un objeto con las métricas actuales de la MMU, incluyendo:
+| - ram: El estado actual de la RAM.
+| - pointers: Los punteros de página actuales.
+| - processes: La cantidad de procesos en ejecución.
+| - clock: El reloj actual de la MMU.
+| - ramKB: La cantidad de RAM utilizada en KB.
+| - ramPct: El porcentaje de RAM utilizada.
+| - vramKB: La cantidad de VRAM utilizada en KB.
+| - vramPctOfRam: El porcentaje de VRAM utilizada respecto a la RAM total.
+| - thrashing: La cantidad de eventos de thrashing ocurridos.
+| - thrashingPct: El porcentaje de tiempo que la MMU ha estado en thrashing.
+| - internalWasteKB: La cantidad de desperdicio interno en KB.  
+| (Este comentario lo hizo la IA, yo solo le di Enter JAJAAJ)
+*/
 function metrics(mmu) {
   const ramPages = mmu.ram.filter(Boolean).length,
         vPages = mmu.vram.size;
