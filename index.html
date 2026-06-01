@@ -15,18 +15,32 @@
           <h1>Simulacion de paginacion MMU</h1>
         </div>
 
-        <section class="run-summary" aria-label="Parametros de la simulacion">
-          <div>
-            <span>Semilla</span>
-            <strong>Undefined</strong>
+                <section class="run-summary" aria-label="Parametros de la simulacion">
+          <div class="control-card">
+            <label for="seedInput">Semilla</label>
+            <input id="seedInput" type="text" placeholder="Generar automaticamente">
           </div>
-          <div>
-            <button id="playBtn">Play</button>
-            <button id="pauseBtn">Pause</button>
-            <button id="stepBtn">Step</button>
+
+          <div class="control-card compact-control">
+            <label for="processCount">Numero procesos (P)</label>
+            <select id="processCount" name="processCount">
+              <option value="10">10</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
           </div>
-          <div>
-            <span>Algoritmo</span>
+
+          <div class="control-card compact-control">
+            <label for="operationCount">Cantidad Operaciones (N)</label>
+            <select id="operationCount" name="operationCount">
+              <option value="500">500</option>
+              <option value="1000">1000</option>
+              <option value="5000">5000</option>
+            </select>
+          </div>
+
+          <div class="control-card compact-control">
+            <label for="algoritmoSelector">Algoritmo</label>
             <select id="algoritmoSelector" name="algoritmo">
               <option value="FIFO">FIFO</option>
               <option value="SC">SC</option>
@@ -34,41 +48,30 @@
               <option value="LFU">LFU</option>
             </select>
           </div>
-          <!--
-          <script type="module">
-            import { pickVictim } from './algorithm.js';
-            
-            // FunciÃ³n auxiliar para obtener el algoritmo actual del dropdown
-            function getCurrentAlgorithm() {
-                return document.getElementById('algoritmoSelector').value;
-            }
-            
-            // Modificar el objeto mmu para que use el algoritmo del dropdown
-            const mmu = {
-                get algorithm() {
-                    return getCurrentAlgorithm();
-                },
-                ram: [], // Tus pÃ¡ginas
-                secondChancePointer: 0, // Si lo necesitas para SC
-                // otras propiedades que necesites
-            };
-            
-            // Ahora cuando llames a pickVictim, siempre usarÃ¡ el algoritmo seleccionado
-            function ejecutarPickVictim(opIndex) {
-                const victimIndex = pickVictim(mmu, opIndex);
-                console.log(`Usando algoritmo: ${mmu.algorithm}, vÃ­ctima: ${victimIndex}`);
-                return victimIndex;
-            }
-            
-            // Ejemplo de uso
-            // ejecutarPickVictim(0);
-            
-            // Exponer funciones globalmente
-            window.ejecutarPickVictim = ejecutarPickVictim;
-            window.mmu = mmu;
-          </script>
-          -->
 
+          <div class="control-card file-control">
+            <label for="fileInput">Input Archivo</label>
+            <input id="fileInput" type="file" accept=".txt,text/plain">
+          </div>
+
+          <div class="control-card action-control">
+            <span>Archivo de operaciones</span>
+            <div class="button-row">
+              <button id="generateBtn" type="button">Generar</button>
+              <button id="downloadBtn" type="button">Descargar</button>
+            </div>
+          </div>
+
+          <div class="control-card action-control">
+            <span>Simulacion</span>
+            <div class="button-row">
+              <button id="playBtn" type="button">Play</button>
+              <button id="pauseBtn" type="button">Pause</button>
+              <button id="stepBtn" type="button">Step</button>
+            </div>
+          </div>
+
+          <p id="scenarioStatus" class="scenario-status" aria-live="polite">Preparando escenario...</p>
         </section>
       </header>
 
@@ -180,4 +183,5 @@
     </main>
   </body>
 </html>
+
 

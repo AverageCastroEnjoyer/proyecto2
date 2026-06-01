@@ -61,31 +61,87 @@ h1 {
 
 .run-summary {
   display: grid;
-  grid-template-columns: repeat(3, minmax(110px, 1fr));
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
   gap: 8px;
-  min-width: 430px;
+  min-width: 720px;
 }
 
-.run-summary div {
+.control-card {
+  display: grid;
+  gap: 6px;
+  align-content: start;
   border: 1px solid var(--line);
   background: var(--surface);
   padding: 8px 10px;
-  text-align: center;
 }
 
-.run-summary span {
+.control-card label,
+.control-card span {
   display: block;
   color: var(--muted);
   font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
-.run-summary strong {
-  display: block;
-  margin-top: 3px;
-  font-size: 15px;
+.control-card input,
+.control-card select,
+.control-card button {
+  min-height: 30px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
 }
 
+.control-card input,
+.control-card select {
+  width: 100%;
+  padding: 4px 6px;
+}
+
+.control-card button {
+  padding: 4px 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.control-card button:disabled {
+  color: var(--muted);
+  cursor: not-allowed;
+  opacity: .65;
+}
+
+.file-control {
+  grid-column: span 2;
+}
+
+.action-control {
+  grid-column: span 1;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.scenario-status {
+  grid-column: 1 / -1;
+  margin: 0;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 7px 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.scenario-status.error {
+  border-color: var(--danger);
+  color: var(--danger);
+  font-weight: 700;
+}
 .memory-strip {
   display: grid;
   gap: 10px;
@@ -235,9 +291,8 @@ th {
     gap: 28px;
   }
 
-  .run-summary {
-    min-width: 360px;
-  }
+  .run-summary { min-width: 620px; }
 }
+
 
 
