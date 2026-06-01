@@ -1,14 +1,27 @@
+import { MMU } from "./mmu.js";
+import { renderSimulation } from "./app.js";
 
-/*let intervalId = null;
+//ejemplo x para simulacion
+const operations = [
+  { type: "new", pid: 1, size: 500 },
+  { type: "use", ptr: 1 },
+  { type: "new", pid: 2, size: 1000 }
+];
 
-document.getElementById("step-btn").addEventListener("click", stepSimulation);
+const optMmu = new MMU("OPT", "OPT", operations);
+const algMmu = new MMU("LRU", "LRU", operations);
 
-document.getElementById("play-btn").addEventListener("click", () => {
-  if (intervalId) return;
-  intervalId = setInterval(stepSimulation, 600);
-});
+let currentOperation = 0;
 
-document.getElementById("pause-btn").addEventListener("click", () => {
-  clearInterval(intervalId);
-  intervalId = null;
-});*/
+function stepSimulation() {
+  if (currentOperation >= operations.length) return;
+
+  const operation = operations[currentOperation];
+
+  optMmu.execute(operation, currentOperation);
+  algMmu.execute(operation, currentOperation);
+
+  renderSimulation(optMmu.snapshot(), algMmu.snapshot());
+
+  currentOperation++;
+}

@@ -34,40 +34,7 @@
               <option value="LFU">LFU</option>
             </select>
           </div>
-          <!--
-          <script type="module">
-            import { pickVictim } from './algorithm.js';
-            
-            // Función auxiliar para obtener el algoritmo actual del dropdown
-            function getCurrentAlgorithm() {
-                return document.getElementById('algoritmoSelector').value;
-            }
-            
-            // Modificar el objeto mmu para que use el algoritmo del dropdown
-            const mmu = {
-                get algorithm() {
-                    return getCurrentAlgorithm();
-                },
-                ram: [], // Tus páginas
-                secondChancePointer: 0, // Si lo necesitas para SC
-                // otras propiedades que necesites
-            };
-            
-            // Ahora cuando llames a pickVictim, siempre usará el algoritmo seleccionado
-            function ejecutarPickVictim(opIndex) {
-                const victimIndex = pickVictim(mmu, opIndex);
-                console.log(`Usando algoritmo: ${mmu.algorithm}, víctima: ${victimIndex}`);
-                return victimIndex;
-            }
-            
-            // Ejemplo de uso
-            // ejecutarPickVictim(0);
-            
-            // Exponer funciones globalmente
-            window.ejecutarPickVictim = ejecutarPickVictim;
-            window.mmu = mmu;
-          </script>
-          -->
+          
 
         </section>
       </header>
