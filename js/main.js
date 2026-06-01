@@ -7,20 +7,6 @@ import {
   serializeOperations
 } from "./preparation.js";
 
-const DEFAULT_OPERATIONS = [
-  { type: "new", pid: 1, size: 500 },
-  { type: "new", pid: 1, size: 1000 },
-  { type: "new", pid: 2, size: 5320 },
-  { type: "use", ptr: 1 },
-  { type: "use", ptr: 2 },
-  { type: "use", ptr: 3 },
-  { type: "new", pid: 3, size: 420000 },
-  { type: "use", ptr: 4 },
-  { type: "delete", ptr: 1 },
-  { type: "kill", pid: 1 },
-  { type: "kill", pid: 2 },
-  { type: "kill", pid: 3 }
-];
 
 const algorithmSelector = document.getElementById("algoritmoSelector");
 const processCountInput = document.getElementById("processCount");
