@@ -1,11 +1,11 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simulacion MMU</title>
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="app.js"></script>
+    <script type="module" src="js/main.js"></script>
   </head>
   <body>
     <main class="simulation-shell" aria-label="Visualizacion de simulacion MMU">
@@ -21,9 +21,9 @@
             <strong>Undefined</strong>
           </div>
           <div>
+            <button id="playBtn">Play</button>
             <button id="pauseBtn">Pause</button>
-            <button id="resetBtn">Reset</button>
-            <button id="stopBtn">Stop</button>
+            <button id="stepBtn">Step</button>
           </div>
           <div>
             <span>Algoritmo</span>
@@ -38,7 +38,7 @@
           <script type="module">
             import { pickVictim } from './algorithm.js';
             
-            // Función auxiliar para obtener el algoritmo actual del dropdown
+            // FunciÃ³n auxiliar para obtener el algoritmo actual del dropdown
             function getCurrentAlgorithm() {
                 return document.getElementById('algoritmoSelector').value;
             }
@@ -48,15 +48,15 @@
                 get algorithm() {
                     return getCurrentAlgorithm();
                 },
-                ram: [], // Tus páginas
+                ram: [], // Tus pÃ¡ginas
                 secondChancePointer: 0, // Si lo necesitas para SC
                 // otras propiedades que necesites
             };
             
-            // Ahora cuando llames a pickVictim, siempre usará el algoritmo seleccionado
+            // Ahora cuando llames a pickVictim, siempre usarÃ¡ el algoritmo seleccionado
             function ejecutarPickVictim(opIndex) {
                 const victimIndex = pickVictim(mmu, opIndex);
-                console.log(`Usando algoritmo: ${mmu.algorithm}, víctima: ${victimIndex}`);
+                console.log(`Usando algoritmo: ${mmu.algorithm}, vÃ­ctima: ${victimIndex}`);
                 return victimIndex;
             }
             
@@ -103,7 +103,7 @@
 
         <article class="ram-row">
           <span class="ram-title">RAM - ALG</span>
-          <div class="ram-bar" role="img" aria-label="100 paginas de RAM para algoritmo seleccionado"></div>
+          <div id="ram-alg" class="ram-bar" role="img" aria-label="100 paginas de RAM para algoritmo seleccionado"></div>
             <!--
             <span class="page p1"></span><span class="page p1"></span><span class="page p1"></span><span class="page p1"></span><span class="page p2"></span>
             <span class="page p2"></span><span class="page p2"></span><span class="page p3"></span><span class="page p3"></span><span class="page p3"></span>
@@ -155,7 +155,7 @@
         </article>
 
         <article class="algorithm-panel">
-          <header class="panel-title">MMU - ALG</header>
+          <header id="selected-panel-title" class="panel-title">MMU - ALG</header>
           <div class="mmu-table-wrap">
             <table class="mmu-table">
               <thead>
@@ -180,3 +180,4 @@
     </main>
   </body>
 </html>
+

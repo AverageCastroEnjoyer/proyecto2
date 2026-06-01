@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   color-scheme: light;
   --ink: #202326;
   --muted: #5f6871;
@@ -197,10 +197,14 @@ th {
   z-index: 1;
 }
 
-.process-a td { background: var(--p1); }
-.process-b td { background: var(--p2); }
-.process-c td { background: #ffe69a; }
-.process-d td { background: #ffb6c8; }
+.mmu-table tr.p1 td { background: var(--p1); }
+.mmu-table tr.p2 td { background: var(--p2); }
+.mmu-table tr.p3 td { background: var(--p3); }
+.mmu-table tr.p4 td { background: var(--p4); }
+.mmu-table tr.p5 td { background: var(--p5); }
+.mmu-table tr.p6 td { background: var(--p6); }
+.mmu-table tr.p7 td { background: var(--p7); }
+.mmu-table tr.p8 td { background: var(--p8); }
 
 .metrics {
   display: grid;
@@ -235,3 +239,5 @@ th {
     min-width: 360px;
   }
 }
+
+
