@@ -40,7 +40,7 @@ export function generateOperations({ processCount, operationCount, seed }) {
   const n = Number(operationCount);
 
   if (!Number.isInteger(p) || p <= 0) throw new Error("P debe ser un entero positivo.");
-  if (!Number.isInteger(n) || n < p) throw new Error("N debe ser mayor o igual a P para poder incluir kill(pid) por proceso.");
+  if (!Number.isInteger(n) || n < p) throw new Error("N debe ser mayor o igual a P.");
 
   const rng = seededRandom(seed);
   const processes = Array.from({ length: p }, (_, i) => ({

@@ -30,7 +30,8 @@ export class Simulator {
   }
 
   pause() {
-    if (this.timer) clearInterval(this.timer);
+    if (this.timer)
+      clearInterval(this.timer);
     this.timer = null;
   }
 
